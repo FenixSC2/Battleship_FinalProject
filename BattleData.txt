@@ -1,0 +1,13 @@
+This file contains all data required by the program to run. Change fields as desired to play the game in a different way!
+
+Board size: 10
+Number of ships: 5
+
+Sizes of ships:
+first : 2
+second : 2
+third : 3
+fourth : 3
+fifth : 4
+
+If you increase the number of ships you must also provide additional number data about the ship's size. (must be int)

@@ -160,7 +160,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "lib/src/IntPair.h",
+			"path" : "lib/include/IntPair.h",
 			"sourceGroupIndex" : 1
 		}
 	],

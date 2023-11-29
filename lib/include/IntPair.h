@@ -15,6 +15,9 @@ public:
     // constructor
     IntPair();
     IntPair(int a, int b);
+    // overload operators
+    IntPair& operator=(const IntPair &other);
+    bool operator==(const IntPair &other) const;
 
     // setters
     void setX(int a);

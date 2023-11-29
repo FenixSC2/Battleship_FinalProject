@@ -41,3 +41,16 @@ void IntPair::getPair(int &a, int &b) {
     a = x;
     b = y;
 }
+
+IntPair &IntPair::operator=(const IntPair &other) {
+    if (this != &other) {
+        x = other.x;
+        y = other.y;
+    }
+    return *this;
+}
+
+bool IntPair::operator==(const IntPair &other) const {
+    return (x == other.x) && (y == other.y);
+}
+

@@ -5,21 +5,42 @@
 #ifndef BATTLESHIP_FINALPROJECT_GAMERUNNER_H
 #define BATTLESHIP_FINALPROJECT_GAMERUNNER_H
 
+#include "GameBoard.h"
+#include "iostream"
+
+using namespace std;
 
 class GameRunner {
 private:
+    // data
+    int boardSize, numShips;
+    vector<int> shipSizes;
+    vector<Ship> allShips;
+    // boards for the player and cpu
+    GameBoard* playerBoard;
+    GameBoard* cpuBoard;
+
     // for player moves
-    void playerMove();
+    // gets the location the player would like to hit
+    IntPair playerMove();
 
     // for computer moves
-    void cpuMove();
+    // get the location the cpu selected to hit (TODO: randomly generated probably)
+    IntPair cpuMove();
 
     // for determining if the game has concluded
     bool isGameOver();
 
+    // create the ships for the game to be used by the player and CPU
+    void createShips();
+
+    // create an ASCII representation of the board
+    void drawASCII();
+
 public:
-    // constructor
-    GameRunner(int boardSize, int numShips, int shipSizes[numShips]);
+    // constructors
+    GameRunner();
+    GameRunner(int boardSize, int numShips, vector<int> shipSizes);
 
     // start and run the game
     void play();

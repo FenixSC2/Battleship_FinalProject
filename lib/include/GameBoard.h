@@ -40,7 +40,7 @@ public:
     ~GameBoard();
 
     // place an entire ship onto this board
-    void placeShip(vector<IntPair> locations, Ship* ship);
+    void placeShip(const vector<IntPair>& locations, Ship* ship);
 
     // determines if all ships on this board have sunk
     bool isOver();
@@ -51,7 +51,7 @@ public:
     void setPos(IntPair pair, Ship* ship);
 
     // returns true if the input IntPair is on this board
-    bool onBoard(IntPair pair);
+    bool onBoard(IntPair pair) const;
 
     // determines if there is space at the given IntPair for a ship
     bool shipSpace(IntPair pair, int shipSize, bool isVertical, bool &directionLeftOrUp);

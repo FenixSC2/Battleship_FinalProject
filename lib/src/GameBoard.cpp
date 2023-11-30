@@ -36,6 +36,7 @@ void GameBoard::setSail() {
         if (rand() % 2 == 0) {
             isVertical = !isVertical;
         }
+        // loop here in case the random position selected is occupied
         do {
             // get new random position on board
             int x = rand() % boardSize;
@@ -65,7 +66,7 @@ void GameBoard::setSail() {
                             }
                         }
                     }
-                    // place the ship on the board at the propper locations
+                    // place the ship on the board at the proper locations
                     placeShip(locations, s);
                     // update the loop
                     foundSpot = true;
@@ -150,7 +151,7 @@ Ship *GameBoard::getPos(IntPair pair) {
     return board[pair.getX()][pair.getY()];
 }
 
-bool GameBoard::onBoard(IntPair pair) {
+bool GameBoard::onBoard(IntPair pair) const {
     return (pair.getX() >= 0 && pair.getX() < boardSize) && (pair.getY() >= 0 && pair.getY() < boardSize);
 }
 
@@ -161,21 +162,37 @@ bool GameBoard::shipSpace(IntPair pair, int shipSize, bool isVertical, bool &dir
         // if the boat is vertical
         if (isVertical) {
             // check the ship can be placed below the point
-            if (onBoard(IntPair(pair.getX(), pair.getY() + i)) && board[pair.getX()][pair.getY() + i] != nullptr) {
+            if (onBoard(IntPair(pair.getX(), pair.getY() + i))) {
+                if (board[pair.getX()][pair.getY() + i] != nullptr) {
+                    canPlaceShipRightOrDown = false;
+                }
+            } else {
                 canPlaceShipRightOrDown = false;
             }
             // check if the ship can be placed above the point
-            if (onBoard(IntPair(pair.getX(), pair.getY() - i)) && board[pair.getX()][pair.getY() - i] != nullptr) {
+            if (onBoard(IntPair(pair.getX(), pair.getY() - i))) {
+                if (board[pair.getX()][pair.getY() - i] != nullptr) {
+                    canPlaceShipLeftOrUp = false;
+                }
+            } else {
                 canPlaceShipLeftOrUp = false;
             }
         } // if the boat is horizontal
         else {
             // check if the ship can be placed to the right of the point
-            if (onBoard(IntPair(pair.getX() + i, pair.getY())) && board[pair.getX() + i][pair.getY()] != nullptr) {
+            if (onBoard(IntPair(pair.getX() + i, pair.getY()))) {
+                if (board[pair.getX() + i][pair.getY()] != nullptr) {
+                    canPlaceShipRightOrDown = false;
+                }
+            } else {
                 canPlaceShipRightOrDown = false;
             }
             // check if the ship can be placed to the left of the point
-            if (onBoard(IntPair(pair.getX() - i, pair.getY())) && board[pair.getX() - i][pair.getY()] != nullptr) {
+            if (onBoard(IntPair(pair.getX() - i, pair.getY()))) {
+                if (board[pair.getX() - i][pair.getY()] != nullptr) {
+                    canPlaceShipLeftOrUp = false;
+                }
+            } else {
                 canPlaceShipLeftOrUp = false;
             }
         }
@@ -189,7 +206,7 @@ bool GameBoard::shipSpace(IntPair pair, int shipSize, bool isVertical, bool &dir
     return false;
 }
 
-void GameBoard::placeShip(vector<IntPair> locations, Ship *ship) {
+void GameBoard::placeShip(const vector<IntPair>& locations, Ship *ship) {
     for (IntPair pair : locations) {
         setPos(pair, ship);
     }

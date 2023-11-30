@@ -40,7 +40,7 @@ private:
     // allow the player to place their ships on their board
     void placePlayerShips();
     // get a IntPair from the player
-    IntPair getIntPairInput(bool &isVertical);
+    IntPair getIntPairInputASCII(bool &isVertical);
 
 public:
     // constructors

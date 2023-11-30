@@ -6,6 +6,8 @@
 #define BATTLESHIP_FINALPROJECT_GAMEBOARD_H
 
 #include "Ship.h"
+#include "random"
+#include "ctime"
 
 using namespace std;
 
@@ -13,7 +15,7 @@ class GameBoard {
 private:
     int boardSize;
     vector<vector<Ship*>> board;
-    vector<Ship> ships;
+    vector<Ship*> ships;
 
     // initialize the board with all null values
     void initBoard();
@@ -27,7 +29,7 @@ private:
 public:
     // constructors
     GameBoard();
-    explicit GameBoard(int bs, vector<Ship> allAvailableShips, bool placedRandomly);
+    explicit GameBoard(int bs, vector<Ship*> allAvailableShips, bool placedRandomly);
 
     // rule of 3
     // Copy constructor
@@ -38,13 +40,21 @@ public:
     ~GameBoard();
 
     // place an entire ship onto this board
-    void placeShip(vector<IntPair> locations);
+    void placeShip(vector<IntPair> locations, Ship* ship);
 
     // determines if all ships on this board have sunk
     bool isOver();
 
     // get value at a position
     Ship* getPos(IntPair pair);
+    // set a value at a position
+    void setPos(IntPair pair, Ship* ship);
+
+    // returns true if the input IntPair is on this board
+    bool onBoard(IntPair pair);
+
+    // determines if there is space at the given IntPair for a ship
+    bool shipSpace(IntPair pair, int shipSize, bool isVertical, bool &directionLeftOrUp);
 };
 
 

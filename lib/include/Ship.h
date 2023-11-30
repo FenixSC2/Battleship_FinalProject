@@ -49,6 +49,8 @@ public:
 
     // displays the number of this ship for the ASCII visualization
     int display();
+    // returns the size of this ship
+    int getSize();
 };
 
 

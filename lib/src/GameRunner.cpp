@@ -26,21 +26,22 @@ GameRunner::GameRunner(int bs, int ns, vector<int> ss) {
 void GameRunner::play() {
     // set up the game TODO
     // have the player place their ships
+    // placePlayerShips();
     // generation of locations for the CPU ships is done automatically
 
     // begin actual play of the game
-    drawASCII();
+    drawASCII(cpuBoard);
 //    while(!isGameOver()) {
-//        playerMove();
-//        cpuMove();
+//        getPlayerMove();
+//        getcpuMove();
 //    }
 }
 
-IntPair GameRunner::playerMove() {
+IntPair GameRunner::getPlayerMove() {
 
 }
 
-IntPair GameRunner::cpuMove() {
+IntPair GameRunner::getcpuMove() {
 
 }
 
@@ -55,12 +56,12 @@ bool GameRunner::isGameOver() {
 void GameRunner::createShips() {
     int count = 0;
     for (int size : shipSizes) {
-        allShips.emplace_back(count, size);
+        allShips.emplace_back(new Ship(count, size));
         count++;
     }
 }
 
-void GameRunner::drawASCII() {
+void GameRunner::drawASCII(GameBoard* board) const {
     cout << "Drawing the grid" << endl;
     // create top border
     for (int i = 0; i < boardSize; i++) {
@@ -71,10 +72,10 @@ void GameRunner::drawASCII() {
     for (int i = 0; i < boardSize; i++) {
         for (int j = 0; j < boardSize; j++) {
             std::cout << "|";
-            if (playerBoard->getPos(IntPair(i, j)) == nullptr) {
+            if (board->getPos(IntPair(i, j)) == nullptr) {
                 std::cout << " ";
             } else {
-                std::cout << playerBoard->getPos(IntPair(i, j))->display();
+                std::cout << board->getPos(IntPair(i, j))->display();
             }
         }
         std::cout << "|" << std::endl;

@@ -71,4 +71,8 @@ int Ship::display() {
     return shipNumber;
 }
 
+int Ship::getSize() {
+    return shipSize;
+}
+
 Ship::~Ship() = default;

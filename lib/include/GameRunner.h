@@ -15,18 +15,18 @@ private:
     // data
     int boardSize, numShips;
     vector<int> shipSizes;
-    vector<Ship> allShips;
+    vector<Ship*> allShips;
     // boards for the player and cpu
     GameBoard* playerBoard;
     GameBoard* cpuBoard;
 
     // for player moves
     // gets the location the player would like to hit
-    IntPair playerMove();
+    IntPair getPlayerMove();
 
     // for computer moves
     // get the location the cpu selected to hit (TODO: randomly generated probably)
-    IntPair cpuMove();
+    IntPair getcpuMove();
 
     // for determining if the game has concluded
     bool isGameOver();
@@ -35,7 +35,7 @@ private:
     void createShips();
 
     // create an ASCII representation of the board
-    void drawASCII();
+    void drawASCII(GameBoard* board) const;
 
 public:
     // constructors

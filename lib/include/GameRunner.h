@@ -37,6 +37,11 @@ private:
     // create an ASCII representation of the board
     void drawASCII(GameBoard* board) const;
 
+    // allow the player to place their ships on their board
+    void placePlayerShips();
+    // get a IntPair from the player
+    IntPair getIntPairInput(bool &isVertical);
+
 public:
     // constructors
     GameRunner();

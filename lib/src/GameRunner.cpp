@@ -63,13 +63,21 @@ void GameRunner::createShips() {
 
 void GameRunner::drawASCII(GameBoard* board) const {
     //cout << "Drawing the grid" << endl; // debug line
-    // create top border
+    // create top numbers
+    cout << "   ";
     for (int i = 0; i < boardSize; i++) {
+        cout << i << " ";
+    }
+    cout << endl;
+    // create top border
+    for (int i = 0; i < boardSize + 1; i++) {
         cout << "--";
     }
     std::cout << "-" << std::endl;
     // create rows
     for (int i = 0; i < boardSize; i++) {
+        // write the row column first
+        cout << i << " ";
         for (int j = 0; j < boardSize; j++) {
             std::cout << "|";
             if (board->getPos(IntPair(j, i)) == nullptr) {
@@ -81,7 +89,7 @@ void GameRunner::drawASCII(GameBoard* board) const {
         std::cout << "|" << std::endl;
     }
     // create bottom border
-    for (int i = 0; i < boardSize; i++) {
+    for (int i = 0; i < boardSize + 1; i++) {
         std::cout << "--";
     }
     std::cout << "-" << std::endl;
@@ -94,14 +102,14 @@ void GameRunner::placePlayerShips() {
     for (Ship* sh : allShips) {
         counter++;
         bool isVertical;
-        bool leftOrUp;
+        bool rightOrDown;
         cout << "Your current board is:" << endl;
         drawASCII(playerBoard);
         cout << endl << "Please place ship number " << counter << "." << endl << endl;
         // get position and orientation from the player
         IntPair pos = getIntPairInputASCII(isVertical);
         // see if there is space at that position for the given ship
-        while (!(playerBoard->shipSpace(pos, sh->getSize(), isVertical, leftOrUp))) {
+        while (!(playerBoard->shipSpace(pos, sh->getSize(), isVertical, rightOrDown))) {
             cout << "There is not space for a ship there, please enter a different location" << endl;
             pos = getIntPairInputASCII(isVertical);
         }
@@ -111,16 +119,16 @@ void GameRunner::placePlayerShips() {
         // populate locations
         for (int i = 0; i < sh->getSize(); i++) {
             if (isVertical) {
-                if (leftOrUp) {
-                    locations.emplace_back(IntPair(pos.getX(), pos.getY() - i));
-                } else {
+                if (rightOrDown) {
                     locations.emplace_back(IntPair(pos.getX(), pos.getY() + i));
+                } else {
+                    locations.emplace_back(IntPair(pos.getX(), pos.getY() - i));
                 }
             } else {
-                if (leftOrUp) {
-                    locations.emplace_back(IntPair(pos.getX() - i, pos.getY()));
-                } else {
+                if (rightOrDown) {
                     locations.emplace_back(IntPair(pos.getX() + i, pos.getY()));
+                } else {
+                    locations.emplace_back(IntPair(pos.getX() - i, pos.getY()));
                 }
             }
         }

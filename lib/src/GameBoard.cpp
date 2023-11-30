@@ -42,27 +42,27 @@ void GameBoard::setSail() {
             int x = rand() % boardSize;
             int y = rand() % boardSize;
             // initialize value to know where to place the ship
-            bool directionLeftOrUp;
+            bool directionRightOrDown;
             // confirm that we are on the board
             IntPair pair = IntPair(x, y);
             if (onBoard(pair)) {
                 // determine if the ship can be placed (e.g. is there enough space)
-                if (shipSpace(pair, s->getSize(), isVertical, directionLeftOrUp)) {
+                if (shipSpace(pair, s->getSize(), isVertical, directionRightOrDown)) {
                     // if the ship can be placed, place it and update foundSpot
                     vector<IntPair> locations;
                     // populate locations
                     for (int i = 0; i < s->getSize(); i++) {
                         if (isVertical) {
-                            if (directionLeftOrUp) {
-                                locations.emplace_back(IntPair(pair.getX(), pair.getY() - i));
-                            } else {
+                            if (directionRightOrDown) {
                                 locations.emplace_back(IntPair(pair.getX(), pair.getY() + i));
+                            } else {
+                                locations.emplace_back(IntPair(pair.getX(), pair.getY() - i));
                             }
                         } else {
-                            if (directionLeftOrUp) {
-                                locations.emplace_back(IntPair(pair.getX() - i, pair.getY()));
-                            } else {
+                            if (directionRightOrDown) {
                                 locations.emplace_back(IntPair(pair.getX() + i, pair.getY()));
+                            } else {
+                                locations.emplace_back(IntPair(pair.getX() - i, pair.getY()));
                             }
                         }
                     }
@@ -155,7 +155,7 @@ bool GameBoard::onBoard(IntPair pair) const {
     return (pair.getX() >= 0 && pair.getX() < boardSize) && (pair.getY() >= 0 && pair.getY() < boardSize);
 }
 
-bool GameBoard::shipSpace(IntPair pair, int shipSize, bool isVertical, bool &directionLeftOrUp) {
+bool GameBoard::shipSpace(IntPair pair, int shipSize, bool isVertical, bool &directionRightOrDown) {
     bool canPlaceShipLeftOrUp = true;
     bool canPlaceShipRightOrDown = true;
     for (int i = 0; i < shipSize; i++) {
@@ -199,7 +199,7 @@ bool GameBoard::shipSpace(IntPair pair, int shipSize, bool isVertical, bool &dir
     }
 
     // return and set value of directionLeftOrUp
-    directionLeftOrUp = canPlaceShipLeftOrUp;
+    directionRightOrDown = canPlaceShipRightOrDown;
     if (canPlaceShipLeftOrUp || canPlaceShipRightOrDown) {
         return true;
     }

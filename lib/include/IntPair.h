@@ -5,6 +5,7 @@
 #ifndef BATTLESHIP_FINALPROJECT_INTPAIR_H
 #define BATTLESHIP_FINALPROJECT_INTPAIR_H
 
+#include "random"
 
 class IntPair {
 private:
@@ -26,8 +27,6 @@ public:
     // getters
     int getX();
     int getY();
-    // changes the value at memory address that was input in, works like a getter but sets the input values
-    void getPair(int &a, int &b);
 };
 
 

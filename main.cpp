@@ -48,8 +48,8 @@ int main(int argc, char* argv[]) {
      * Now that we have all the data, all that is needed is to run the game:
      */
     std::cout << "Board size: " << boardSize << std::endl;
-    std::cout << "Num ships: " << numShips << std::endl;
-    std::cout << "Ship sizes: ";
+    std::cout << "Number of ships: " << numShips << std::endl;
+    std::cout << "Ship sizes (ships will be placed in this order L->R): ";
     for (int size : shipSizes) {
         std::cout << size << " ";
     }

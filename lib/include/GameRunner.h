@@ -21,12 +21,12 @@ private:
     GameBoard* cpuBoard;
 
     // for player moves
-    // gets the location the player would like to hit
-    IntPair getPlayerMove();
+    // gets and hits the location the player would like to hit
+    void getPlayerMove();
 
     // for computer moves
-    // get the location the cpu selected to hit (TODO: randomly generated probably)
-    IntPair getcpuMove();
+    // gets and hits the location the cpu selected to hit (TODO: randomly generated probably)
+    void getcpuMove();
 
     // for determining if the game has concluded
     bool isGameOver();
@@ -35,12 +35,16 @@ private:
     void createShips();
 
     // create an ASCII representation of the board
-    void drawASCII(GameBoard* board) const;
+    void drawASCII(GameBoard* board, vector<IntPair> guesses) const;
 
     // allow the player to place their ships on their board
     void placePlayerShips();
     // get a IntPair from the player
     IntPair getIntPairInputASCII(bool &isVertical);
+
+    // keeps track of which spaces have been guessed so far by the cpu and player respectively
+    vector<IntPair> cpuGuesses;
+    vector<IntPair> playerGuesses;
 
 public:
     // constructors

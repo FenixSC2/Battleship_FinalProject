@@ -37,11 +37,6 @@ int IntPair::getY() {
     return y;
 }
 
-void IntPair::getPair(int &a, int &b) {
-    a = x;
-    b = y;
-}
-
 IntPair &IntPair::operator=(const IntPair &other) {
     if (this != &other) {
         x = other.x;

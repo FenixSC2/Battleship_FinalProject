@@ -215,3 +215,14 @@ void GameBoard::placeShip(const vector<IntPair>& locations, Ship *ship) {
 void GameBoard::setPos(IntPair pair, Ship *ship) {
     board[pair.getX()][pair.getY()] = ship;
 }
+
+bool GameBoard::hit(IntPair pair) {
+    // determine if there is a ship at the location
+    if (getPos(pair) == nullptr) {
+        // no ship -> return false
+        return false;
+    }
+    // yes ship -> remove ship, return true;
+    setPos(pair, nullptr);
+    return true;
+}

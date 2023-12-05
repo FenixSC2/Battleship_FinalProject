@@ -30,24 +30,118 @@ void GameRunner::play() {
     // generation of locations for the CPU ships is done automatically
 
     // begin actual play of the game
-    drawASCII(playerBoard);
-//    while(!isGameOver()) {
-//        getPlayerMove();
-//        getcpuMove();
-//    }
+    drawASCII(playerBoard, cpuGuesses);
+
+    cout << "THE GAME BEGINS!!" << endl << endl;
+
+    while(!isGameOver()) {
+        getPlayerMove();
+        getcpuMove();
+        isGameOver();
+        cout << "Your current board:" << endl;
+        drawASCII(playerBoard, cpuGuesses);
+        // for debug
+        cerr << "DEBUG::CPU current board: " << endl;
+        drawASCII(cpuBoard, playerGuesses);
+    }
 }
 
-IntPair GameRunner::getPlayerMove() {
-
+void GameRunner::getPlayerMove() {
+    // get an IntPair location from the player
+    int x, y;
+    cout << "Please enter the pair location that you would like to hit \"x y\"" << endl;
+    // make sure that x and y are valid
+    while (!(cin >> x >> y)) {
+        cout << "Invalid input. Please enter two integers." << endl;
+        cin.clear();  // Clear the fail state
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear the input buffer
+    }
+    // check that 2 ints were correctly input
+    if (playerBoard->onBoard(IntPair(x, y))) {
+        cout << "You entered the location: " << x << ", " << y << endl;
+        // temp variable keeps track of if the IntPair(x, y) is contained in the vector playerGuesses
+        bool temp;
+        // search for the value
+        auto it = std::find(playerGuesses.begin(), playerGuesses.end(), IntPair(x, y));
+        // Check if the value was found
+        if (it != playerGuesses.end()) {
+            temp = true;
+        } else {
+            temp = false;
+        }
+        // if the value was found get a new value
+        if (temp) {
+            cout << "You already input that value, please input a new value." << endl;
+            getPlayerMove();
+        } else {
+            // determine if there was a ship at the input location
+            if (cpuBoard->hit(IntPair(x, y))) {
+                cout << "Hit ship at \"" << x << ", " << y << "\"" << endl;
+                cout << "Go again!" << endl;
+                // add this location to the vector list of hit locations
+                playerGuesses.emplace_back(IntPair(x, y));
+                // if the player got a hit they get to go again
+                getPlayerMove();
+            } else {
+                cout << "You missed!" << endl;
+                // add this location to the vector list of hit locations
+                playerGuesses.emplace_back(IntPair(x, y));
+            }
+        }
+    } else {
+        cout << "That location is not on the board." << endl;
+        // read a new location / player move
+        getPlayerMove();
+    }
 }
 
-IntPair GameRunner::getcpuMove() {
+void GameRunner::getcpuMove() {
+    // randomly generate an IntPair for the CPU move
+    IntPair pair1 = IntPair();
+    pair1.setPair(rand() % boardSize, rand() % boardSize);
 
+    // temp variable keeps track of if the IntPair(x, y) is contained in the vector cpuGuesses
+    bool temp;
+    // search for the value
+    auto it = std::find(cpuGuesses.begin(), cpuGuesses.end(), pair1);
+    // Check if the value was found
+    if (it != cpuGuesses.end()) {
+        temp = true;
+    } else {
+        temp = false;
+    }
+    // if the value was found get a new value
+    if (temp) {
+        getcpuMove();
+    } else {
+        // say where the cpu fired at
+        cout << "CPU fired at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
+        // determine if there was a ship at the input location
+        if (playerBoard->hit(pair1)) {
+            cout << "CPU hit ship at \"" << pair1.getX() << ", " << pair1.getY() << "\"" << endl;
+            cout << "CPU goes again!" << endl;
+            // add this location to the vector list of hit locations
+            cpuGuesses.emplace_back(pair1);
+            // if the player got a hit they get to go again
+            // TODO: When the cpu gets a hit fire in an adjacent cell rather than firing randomly again
+            getcpuMove();
+        } else {
+            cout << "CPU missed!" << endl;
+            // add this location to the vector list of hit locations
+            cpuGuesses.emplace_back(pair1);
+        }
+    }
 }
 
 bool GameRunner::isGameOver() {
     // check if the game is over for either the player or the cpu
     if (playerBoard->isOver() || cpuBoard->isOver()) {
+        if (cpuBoard->isOver()) {
+            //TODO win message for non terminal output
+            cout << "Congratulations! \nYou Win!" << endl << endl;
+        } else {
+            cout << "You lost.\nBetter luck next time!" << endl << endl;
+        }
         return true;
     }
     return false;
@@ -61,7 +155,7 @@ void GameRunner::createShips() {
     }
 }
 
-void GameRunner::drawASCII(GameBoard* board) const {
+void GameRunner::drawASCII(GameBoard* board, vector<IntPair> guesses) const {
     //cout << "Drawing the grid" << endl; // debug line
     // create top numbers
     cout << "   ";
@@ -81,7 +175,23 @@ void GameRunner::drawASCII(GameBoard* board) const {
         for (int j = 0; j < boardSize; j++) {
             std::cout << "|";
             if (board->getPos(IntPair(j, i)) == nullptr) {
-                std::cout << " ";
+                // determine if this spot was formerly occupied by a ship
+                // temp variable keeps track of if the IntPair(x, y) is contained in the vector cpuGuesses
+                bool temp;
+                // search for the value
+                auto it = std::find(guesses.begin(), guesses.end(), IntPair(i , j));
+                // Check if the value was found
+                if (it != guesses.end()) {
+                    temp = true;
+                } else {
+                    temp = false;
+                }
+                // space for unoccupied, X for formerly occupied
+                if (temp) {
+                    cout << "X";
+                } else {
+                    cout << " ";
+                }
             } else {
                 std::cout << board->getPos(IntPair(j, i))->display() + 1; // + 1 so that we dont have a 0 ship
             }
@@ -104,7 +214,7 @@ void GameRunner::placePlayerShips() {
         bool isVertical;
         bool rightOrDown;
         cout << "Your current board is:" << endl;
-        drawASCII(playerBoard);
+        drawASCII(playerBoard, cpuGuesses);
         cout << endl << "Please place ship number " << counter << "." << endl << endl;
         // get position and orientation from the player
         IntPair pos = getIntPairInputASCII(isVertical);

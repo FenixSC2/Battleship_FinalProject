@@ -2,7 +2,6 @@
 // Created by natha on 11/28/2023.
 //
 
-#include <algorithm>
 #include "../include/Ship.h"
 
 Ship::Ship(int number, int size) {

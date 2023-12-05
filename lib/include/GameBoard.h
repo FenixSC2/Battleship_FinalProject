@@ -5,9 +5,8 @@
 #ifndef BATTLESHIP_FINALPROJECT_GAMEBOARD_H
 #define BATTLESHIP_FINALPROJECT_GAMEBOARD_H
 
-#include "Ship.h"
-#include "random"
 #include "ctime"
+#include "Ship.h"
 
 using namespace std;
 
@@ -55,6 +54,16 @@ public:
 
     // determines if there is space at the given IntPair for a ship
     bool shipSpace(IntPair pair, int shipSize, bool isVertical, bool &directionLeftOrUp);
+
+    /*
+     * Function to hit a ship on the board
+     * - returns true if a ship was hit AND removes the ship from that space
+     * TODO: Make this space distinguishable as having been hit
+     * - returns false if there was no ship present at the location
+     *
+     * Called on player and CPU turns as the main game mechanic
+     */
+    bool hit(IntPair pair);
 };
 
 

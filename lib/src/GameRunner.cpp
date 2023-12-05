@@ -3,7 +3,7 @@
 //
 
 #include "../include/GameRunner.h"
-# include <thread>
+
 GameRunner::GameRunner() {
 
 }
@@ -36,7 +36,7 @@ void GameRunner::play() {
 
     //once game starts backgournd music starts
     backgroundMusicPlayer.setVolume(0.20);
-    backgroundMusicPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/background.mp3");
+    backgroundMusicPlayer.play(backgroundPath);
 
     while(!isGameOver()) {
         getPlayerMove();
@@ -80,12 +80,12 @@ void GameRunner::getPlayerMove() {
             getPlayerMove();
         } else {
             // determine if there was a ship at the input location
-            eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/shootv2.mp3");
-            std::this_thread::sleep_for(std::chrono::milliseconds(2900));
+            eventSoundPlayer.play(shootNoisePath);
+            std::this_thread::sleep_for(std::chrono::milliseconds(2500));
 
             if (cpuBoard->hit(IntPair(x, y))) {
-                eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/explosion.mp3");
-                std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+                eventSoundPlayer.play(explosionPath);
+                std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
                 cout << "Hit ship at \"" << x << ", " << y << "\"" << endl;
                 cout << "Go again!" << endl;
@@ -94,8 +94,8 @@ void GameRunner::getPlayerMove() {
                 // if the player got a hit they get to go again
                 getPlayerMove();
             } else {
-                eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/miss.mp3");
-                std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+                eventSoundPlayer.play(missPath);
+                std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
                 cout << "You missed!" << endl;
                 // add this location to the vector list of hit locations
@@ -130,10 +130,14 @@ void GameRunner::getcpuMove() {
     } else {
         // say where the cpu fired at
         cout << "CPU fired at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
+        eventSoundPlayer.play(shootNoisePath);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2500));
         // determine if there was a ship at the input location
         if (playerBoard->hit(pair1)) {
             cout << "CPU hit ship at \"" << pair1.getX() << ", " << pair1.getY() << "\"" << endl;
             cout << "CPU goes again!" << endl;
+            eventSoundPlayer.play(explosionPath);
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
             // add this location to the vector list of hit locations
             cpuGuesses.emplace_back(pair1);
             // select the direction the computer will attempt to move in
@@ -141,6 +145,8 @@ void GameRunner::getcpuMove() {
             hitAdjacent(pair1, direction, 0);
         } else {
             cout << "CPU missed!" << endl;
+            eventSoundPlayer.play(missPath);
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
             // add this location to the vector list of hit locations
             cpuGuesses.emplace_back(pair1);
         }
@@ -162,10 +168,14 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     IntPair newPair = IntPair(pair.getX(), pair.getY() - 1);
                     // say where the cpu fired at
                     cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
+                    eventSoundPlayer.play(shootNoisePath);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(2500));
                     // if we hit a boat
                     if (playerBoard->hit(IntPair(newPair.getX(), newPair.getY()))) {
                         cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
                         cout << "CPU goes again!" << endl;
+                        eventSoundPlayer.play(explosionPath);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                         // add this location to the vector list of hit locations
                         cpuGuesses.emplace_back(newPair);
                         // select the direction the computer will attempt to move in
@@ -173,6 +183,8 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     } // if we missed the boats
                     else {
                         cout << "CPU missed!" << endl;
+                        eventSoundPlayer.play(missPath);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                         // add this location to the vector list of hit locations
                         cpuGuesses.emplace_back(newPair);
                     }
@@ -188,10 +200,14 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     IntPair newPair = IntPair(pair.getX() + 1, pair.getY());
                     // say where the cpu fired at
                     cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
+                    eventSoundPlayer.play(shootNoisePath);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(2500));
                     // if we hit a boat
                     if (playerBoard->hit(IntPair(newPair.getX(), newPair.getY()))) {
                         cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
                         cout << "CPU goes again!" << endl;
+                        eventSoundPlayer.play(explosionPath);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                         // add this location to the vector list of hit locations
                         cpuGuesses.emplace_back(newPair);
                         // select the direction the computer will attempt to move in
@@ -199,6 +215,8 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     } // if we missed the boats
                     else {
                         cout << "CPU missed!" << endl;
+                        eventSoundPlayer.play(missPath);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                         // add this location to the vector list of hit locations
                         cpuGuesses.emplace_back(newPair);
                     }
@@ -214,10 +232,14 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     IntPair newPair = IntPair(pair.getX(), pair.getY() + 1);
                     // say where the cpu fired at
                     cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
+                    eventSoundPlayer.play(shootNoisePath);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(2500));
                     // if we hit a boat
                     if (playerBoard->hit(IntPair(newPair.getX(), newPair.getY()))) {
                         cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
                         cout << "CPU goes again!" << endl;
+                        eventSoundPlayer.play(explosionPath);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                         // add this location to the vector list of hit locations
                         cpuGuesses.emplace_back(newPair);
                         // select the direction the computer will attempt to move in
@@ -225,6 +247,8 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     } // if we missed the boats
                     else {
                         cout << "CPU missed!" << endl;
+                        eventSoundPlayer.play(missPath);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                         // add this location to the vector list of hit locations
                         cpuGuesses.emplace_back(newPair);
                     }
@@ -240,10 +264,14 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     IntPair newPair = IntPair(pair.getX() - 1, pair.getY());
                     // say where the cpu fired at
                     cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
+                    eventSoundPlayer.play(shootNoisePath);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(2500));
                     // if we hit a boat
                     if (playerBoard->hit(IntPair(newPair.getX(), newPair.getY()))) {
                         cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
                         cout << "CPU goes again!" << endl;
+                        eventSoundPlayer.play(explosionPath);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                         // add this location to the vector list of hit locations
                         cpuGuesses.emplace_back(newPair);
                         // select the direction the computer will attempt to move in
@@ -251,6 +279,8 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     } // if we missed the boats
                     else {
                         cout << "CPU missed!" << endl;
+                        eventSoundPlayer.play(missPath);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                         // add this location to the vector list of hit locations
                         cpuGuesses.emplace_back(newPair);
                     }
@@ -356,7 +386,7 @@ void GameRunner::placePlayerShips() {
 
         //sound for ship placement
         eventSoundPlayer.setVolume(0.05);
-        eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/spash.wav");
+        eventSoundPlayer.play(splashPath);
 
         // if once a valid location has been selected, place the ship at that location
         // first populate locations

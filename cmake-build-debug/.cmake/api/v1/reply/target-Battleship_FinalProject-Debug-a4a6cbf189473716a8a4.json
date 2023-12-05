@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Battleship_FinalProject"
+			"path" : "Battleship_FinalProject.exe"
+		},
+		{
+			"path" : "Battleship_FinalProject.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -35,7 +38,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -fcolor-diagnostics"
+					"fragment" : "-g -fdiagnostics-color=always"
 				}
 			],
 			"language" : "CXX",
@@ -70,12 +73,16 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "Battleship_FinalProject",
-	"nameOnDisk" : "Battleship_FinalProject",
+	"nameOnDisk" : "Battleship_FinalProject.exe",
 	"paths" : 
 	{
 		"build" : ".",

@@ -25,8 +25,8 @@ public:
     void setY(int b);
     void setPair(int a, int b);
     // getters
-    int getX();
-    int getY();
+    int getX() const;
+    int getY() const;
 };
 
 

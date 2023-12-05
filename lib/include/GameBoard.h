@@ -58,7 +58,6 @@ public:
     /*
      * Function to hit a ship on the board
      * - returns true if a ship was hit AND removes the ship from that space
-     * TODO: Make this space distinguishable as having been hit
      * - returns false if there was no ship present at the location
      *
      * Called on player and CPU turns as the main game mechanic

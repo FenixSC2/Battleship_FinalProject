@@ -46,12 +46,12 @@ public:
      */
     bool hit(IntPair pos);
     // determines if this ship is sunk
-    bool isSunk();
+    bool isSunk() const;
 
     // displays the number of this ship for the ASCII visualization
-    int display();
+    int display() const;
     // returns the size of this ship
-    int getSize();
+    int getSize() const;
 };
 
 

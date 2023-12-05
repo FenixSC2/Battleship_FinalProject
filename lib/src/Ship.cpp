@@ -2,6 +2,8 @@
 // Created by natha on 11/28/2023.
 //
 
+#include <utility>
+
 #include "../include/Ship.h"
 
 Ship::Ship(int number, int size) {
@@ -14,7 +16,7 @@ Ship::Ship(int number, int size, std::vector<IntPair> loc) {
     shipNumber = number;
     shipSize = size;
     numTimesHit = 0;
-    locations = loc;
+    locations = std::move(loc);
 }
 
 void Ship::addLocation(IntPair p) {
@@ -44,7 +46,7 @@ bool Ship::hit(IntPair pos) {
     }
 }
 
-bool Ship::isSunk() {
+bool Ship::isSunk() const {
     return (numTimesHit >= shipSize);
 }
 
@@ -66,11 +68,11 @@ Ship &Ship::operator=(const Ship &other) {
     return *this;
 }
 
-int Ship::display() {
+int Ship::display() const {
     return shipNumber;
 }
 
-int Ship::getSize() {
+int Ship::getSize() const {
     return shipSize;
 }
 

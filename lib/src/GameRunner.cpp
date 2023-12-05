@@ -24,7 +24,6 @@ GameRunner::GameRunner(int bs, int ns, vector<int> ss) {
 
 // play the game loop until the game is over
 void GameRunner::play() {
-    // set up the game TODO
     // have the player place their ships
     placePlayerShips();
     // generation of locations for the CPU ships is done automatically

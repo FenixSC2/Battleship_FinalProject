@@ -29,11 +29,11 @@ void IntPair::setPair(int a, int b) {
     y = b;
 }
 
-int IntPair::getX() {
+int IntPair::getX() const {
     return x;
 }
 
-int IntPair::getY() {
+int IntPair::getY() const {
     return y;
 }
 

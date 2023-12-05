@@ -25,7 +25,7 @@ private:
     void getPlayerMove();
 
     // for computer moves
-    // gets and hits the location the cpu selected to hit (TODO: randomly generated probably)
+    // gets and hits the location the cpu selected to hit
     void getcpuMove();
 
     // for determining if the game has concluded

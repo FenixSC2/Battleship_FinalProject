@@ -7,6 +7,7 @@
 
 #include "GameBoard.h"
 #include "iostream"
+#include "AudioPlayer.h"
 
 using namespace std;
 
@@ -19,6 +20,11 @@ private:
     // boards for the player and cpu
     GameBoard* playerBoard;
     GameBoard* cpuBoard;
+
+    // audio players
+    AudioPlayer backgroundMusicPlayer;
+    AudioPlayer eventSoundPlayer;
+
 
     // for player moves
     // gets and hits the location the player would like to hit

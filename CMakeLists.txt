@@ -11,4 +11,6 @@ add_executable(Battleship_FinalProject main.cpp
         lib/src/GameRunner.cpp
         lib/include/GameRunner.h
         lib/src/IntPair.cpp
-        lib/include/IntPair.h)
+        lib/include/IntPair.h
+        lib/stb/minaudio.h
+        lib/src/AudioPlayer.cpp)

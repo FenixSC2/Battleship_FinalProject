@@ -3,7 +3,7 @@
 //
 
 #include "../include/GameRunner.h"
-
+# include <thread>
 GameRunner::GameRunner() {
 
 }
@@ -24,6 +24,7 @@ GameRunner::GameRunner(int bs, int ns, vector<int> ss) {
 
 // play the game loop until the game is over
 void GameRunner::play() {
+
     // have the player place their ships
     placePlayerShips();
     // generation of locations for the CPU ships is done automatically
@@ -32,6 +33,10 @@ void GameRunner::play() {
     drawASCII(playerBoard, cpuGuesses);
 
     cout << "THE GAME BEGINS!!" << endl << endl;
+
+    //once game starts backgournd music starts
+    backgroundMusicPlayer.setVolume(0.20);
+    backgroundMusicPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/background.mp3");
 
     while(!isGameOver()) {
         getPlayerMove();
@@ -55,6 +60,7 @@ void GameRunner::getPlayerMove() {
         cin.clear();  // Clear the fail state
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear the input buffer
     }
+
     // check that 2 ints were correctly input
     if (playerBoard->onBoard(IntPair(x, y))) {
         cout << "You entered the location: " << x << ", " << y << endl;
@@ -74,7 +80,13 @@ void GameRunner::getPlayerMove() {
             getPlayerMove();
         } else {
             // determine if there was a ship at the input location
+            eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/shootv2.mp3");
+            std::this_thread::sleep_for(std::chrono::milliseconds(2900));
+
             if (cpuBoard->hit(IntPair(x, y))) {
+                eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/explosion.mp3");
+                std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+
                 cout << "Hit ship at \"" << x << ", " << y << "\"" << endl;
                 cout << "Go again!" << endl;
                 // add this location to the vector list of hit locations
@@ -82,6 +94,9 @@ void GameRunner::getPlayerMove() {
                 // if the player got a hit they get to go again
                 getPlayerMove();
             } else {
+                eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/miss.mp3");
+                std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+
                 cout << "You missed!" << endl;
                 // add this location to the vector list of hit locations
                 playerGuesses.emplace_back(IntPair(x, y));
@@ -338,6 +353,11 @@ void GameRunner::placePlayerShips() {
             cout << "There is not space for a ship there, please enter a different location" << endl;
             pos = getIntPairInputASCII(isVertical);
         }
+
+        //sound for ship placement
+        eventSoundPlayer.setVolume(0.05);
+        eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/spash.wav");
+
         // if once a valid location has been selected, place the ship at that location
         // first populate locations
         vector<IntPair> locations;

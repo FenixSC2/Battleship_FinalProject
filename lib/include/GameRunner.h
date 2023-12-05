@@ -21,11 +21,11 @@ private:
     // boards for the player and cpu
     GameBoard* playerBoard;
     GameBoard* cpuBoard;
+    GameBoard* blankBoard;
 
     // audio players
     AudioPlayer backgroundMusicPlayer;
     AudioPlayer eventSoundPlayer;
-
 
     // for player moves
     // gets and hits the location the player would like to hit

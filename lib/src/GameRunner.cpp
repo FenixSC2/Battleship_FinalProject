@@ -20,11 +20,11 @@ GameRunner::GameRunner(int bs, int ns, vector<int> ss) {
 
     playerBoard = new GameBoard(boardSize, allShips, false);
     cpuBoard = new GameBoard(boardSize, allShips, true);
+    blankBoard = new GameBoard(boardSize, allShips, false);
 }
 
 // play the game loop until the game is over
 void GameRunner::play() {
-
     // have the player place their ships
     placePlayerShips();
     // generation of locations for the CPU ships is done automatically
@@ -42,11 +42,10 @@ void GameRunner::play() {
         getPlayerMove();
         getcpuMove();
         isGameOver();
+        cout << "Your shots (CPU board): " << endl;
+        drawASCII(blankBoard, playerGuesses);
         cout << "Your current board:" << endl;
         drawASCII(playerBoard, cpuGuesses);
-        // for debug
-        cout << "DEBUG::CPU current board: " << endl;
-        drawASCII(cpuBoard, playerGuesses);
     }
 }
 

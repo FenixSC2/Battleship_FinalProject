@@ -28,6 +28,9 @@ private:
     // gets and hits the location the cpu selected to hit
     void getcpuMove();
 
+    // hit an adjacent square to the input square in the direction provided
+    void hitAdjacent(IntPair pair, int direction, int timesCalled);
+
     // for determining if the game has concluded
     bool isGameOver();
 

@@ -189,8 +189,10 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     }
                 } // if we are not on the board
                 else {
-                    direction++;
-                    hitAdjacent(pair, direction, timesCalled);
+                    if (timesCalled < 2) {
+                        direction++;
+                        hitAdjacent(pair, direction, timesCalled);
+                    }
                 }
             case 1:
                 // right
@@ -221,8 +223,10 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     }
                 } // if we are not on the board
                 else {
-                    direction++;
-                    hitAdjacent(pair, direction, timesCalled);
+                    if (timesCalled < 2) {
+                        direction++;
+                        hitAdjacent(pair, direction, timesCalled);
+                    }
                 }
             case 2:
                 // down
@@ -253,8 +257,10 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     }
                 } // if we are not on the board
                 else {
-                    direction++;
-                    hitAdjacent(pair, direction, timesCalled);
+                    if (timesCalled < 2) {
+                        direction++;
+                        hitAdjacent(pair, direction, timesCalled);
+                    }
                 }
             default:
                 // left
@@ -285,8 +291,10 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     }
                 } // if we are not on the board
                 else {
-                    direction = 0;
-                    hitAdjacent(pair, direction, timesCalled);
+                    if (timesCalled < 2) {
+                        direction = 0;
+                        hitAdjacent(pair, direction, timesCalled);
+                    }
                 }
         }
     }

@@ -15,3 +15,6 @@ _We used Miniaudio to add sounds to the game flow. There are 6 total sounds incl
 _- matplotplusplus: https://github.com/alandefreitas/matplotplusplus_
 
 _We used matplot++ for a data analytic visualization of the ratio of hits to misses by both the computer and the player._
+
+### NOTE:
+_You must have matplot++ downloaded to run this program._

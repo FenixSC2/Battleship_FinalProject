@@ -260,6 +260,8 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     if (timesCalled < 2) {
                         direction++;
                         hitAdjacent(pair, direction, timesCalled);
+                    } else {
+                        getcpuMove();
                     }
                 }
             case 1:
@@ -294,6 +296,8 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     if (timesCalled < 2) {
                         direction++;
                         hitAdjacent(pair, direction, timesCalled);
+                    } else {
+                        getcpuMove();
                     }
                 }
             case 2:
@@ -328,6 +332,8 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     if (timesCalled < 2) {
                         direction++;
                         hitAdjacent(pair, direction, timesCalled);
+                    } else {
+                        getcpuMove();
                     }
                 }
             default:
@@ -362,104 +368,10 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                     if (timesCalled < 2) {
                         direction = 0;
                         hitAdjacent(pair, direction, timesCalled);
+                    } else {
+                        getcpuMove();
                     }
                     break;
-                }
-
-                switch (direction) {
-                    case 0: // Up
-                        if (playerBoard->onBoard(IntPair(pair.getX(), pair.getY() - 1))) {
-                            IntPair newPair = IntPair(pair.getX(), pair.getY() - 1);
-                            cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
-                            if (playerBoard->hit(newPair)) {
-                                cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\""
-                                     << endl;
-                                cout << "CPU goes again!" << endl;
-                                cpuGuesses.emplace_back(newPair);
-                                hitAdjacent(newPair, direction, timesCalled);
-                            } else {
-                                cout << "CPU missed!" << endl;
-                                cpuGuesses.emplace_back(newPair);
-                                return; // Stop shooting further in this direction after a miss
-                            }
-                        } else {
-                            if (timesCalled < 2) {
-                                direction++;
-                                hitAdjacent(pair, direction, timesCalled);
-                            }
-                        }
-                        break;
-                    case 1: // Right
-                        if (playerBoard->onBoard(IntPair(pair.getX() + 1, pair.getY()))) {
-                            IntPair newPair = IntPair(pair.getX() + 1, pair.getY());
-                            cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
-                            if (playerBoard->hit(newPair)) {
-                                cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\""
-                                     << endl;
-                                cout << "CPU goes again!" << endl;
-                                cpuGuesses.emplace_back(newPair);
-                                hitAdjacent(newPair, direction, timesCalled);
-                            } else {
-                                cout << "CPU missed!" << endl;
-                                cpuGuesses.emplace_back(newPair);
-                                return; // Stop shooting further in this direction after a miss
-                            }
-                        } else {
-                            if (timesCalled < 2) {
-                                direction++;
-                                hitAdjacent(pair, direction, timesCalled);
-                            }
-                        }
-                        break;
-                    case 2: // Down
-                        if (playerBoard->onBoard(IntPair(pair.getX(), pair.getY() + 1))) {
-                            IntPair newPair = IntPair(pair.getX(), pair.getY() + 1);
-                            cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
-                            if (playerBoard->hit(newPair)) {
-                                cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\""
-                                     << endl;
-                                cout << "CPU goes again!" << endl;
-                                cpuGuesses.emplace_back(newPair);
-                                hitAdjacent(newPair, direction, timesCalled);
-                            } else {
-                                cout << "CPU missed!" << endl;
-                                cpuGuesses.emplace_back(newPair);
-                                return; // Stop shooting further in this direction after a miss
-                            }
-                        } else {
-                            if (timesCalled < 2) {
-                                direction++;
-                                hitAdjacent(pair, direction, timesCalled);
-                            }
-                        }
-                        break;
-                    case 3: // Left
-                        if (playerBoard->onBoard(IntPair(pair.getX() - 1, pair.getY()))) {
-                            IntPair newPair = IntPair(pair.getX() - 1, pair.getY());
-                            cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
-                            if (playerBoard->hit(newPair)) {
-                                cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\""
-                                     << endl;
-                                cout << "CPU goes again!" << endl;
-                                cpuGuesses.emplace_back(newPair);
-                                hitAdjacent(newPair, direction, timesCalled);
-                            } else {
-                                cout << "CPU missed!" << endl;
-                                cpuGuesses.emplace_back(newPair);
-                                return; // Stop shooting further in this direction after a miss
-                            }
-                        } else {
-                            if (timesCalled < 2) {
-                                direction++;
-                                hitAdjacent(pair, direction, timesCalled);
-                            }
-                        }
-                        break;
-                    default:
-                        if (timesCalled < 2) {
-                            direction = 0;
-                            hitAdjacent(pair, direction, timesCalled);
-                        }
                 }
         }
     }

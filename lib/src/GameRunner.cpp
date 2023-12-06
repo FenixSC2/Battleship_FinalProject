@@ -5,7 +5,20 @@
 #include "../include/GameRunner.h"
 
 GameRunner::GameRunner() {
+    boardSize = 10;
+    numShips = 5;
 
+    shipSizes.emplace_back(2);
+    shipSizes.emplace_back(2);
+    shipSizes.emplace_back(3);
+    shipSizes.emplace_back(3);
+    shipSizes.emplace_back(4);
+
+    createShips();
+
+    playerBoard = new GameBoard(boardSize, allShips, false);
+    cpuBoard = new GameBoard(boardSize, allShips, true);
+    blankBoard = new GameBoard(boardSize, allShips, false);
 }
 
 GameRunner::GameRunner(int bs, int ns, vector<int> ss) {

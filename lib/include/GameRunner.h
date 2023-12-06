@@ -25,6 +25,13 @@ private:
     AudioPlayer backgroundMusicPlayer;
     AudioPlayer eventSoundPlayer;
 
+    // stats
+    int playerShots;
+    int playerHits;
+    int playerMisses;
+    int cpuShots;
+    int cpuHits;
+    int cpuMisses;
 
     // for player moves
     // gets and hits the location the player would like to hit
@@ -59,6 +66,14 @@ public:
     // constructors
     GameRunner();
     GameRunner(int boardSize, int numShips, vector<int> shipSizes);
+
+    //sets and gets
+    int getPlayerShots() const;
+    int getPlayerHits() const;
+    int getPlayerMisses() const;
+    int getCpuShots() const;
+    int getCpuHits() const;
+    int getCpuMisses() const;
 
     // start and run the game
     void play();

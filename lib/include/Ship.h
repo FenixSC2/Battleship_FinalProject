@@ -44,7 +44,7 @@ public:
      *      - Also removes the hit location from the list of locations to prevent it getting hit again
      * - otherwise returns false
      */
-    bool hit(IntPair pos);
+    void hit();
     // determines if this ship is sunk
     bool isSunk() const;
 

@@ -4,8 +4,14 @@
 
 #include "../include/GameRunner.h"
 # include <thread>
-GameRunner::GameRunner() {
 
+GameRunner::GameRunner() {
+    playerShots = 0;
+    playerHits = 0;
+    playerMisses = 0;
+    cpuShots = 0;
+    cpuHits = 0;
+    cpuMisses = 0;
 }
 
 GameRunner::GameRunner(int bs, int ns, vector<int> ss) {
@@ -39,9 +45,9 @@ void GameRunner::play() {
     backgroundMusicPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/background.mp3");
 
     while(!isGameOver()) {
+        isGameOver();
         getPlayerMove();
         getcpuMove();
-        isGameOver();
         cout << "Your current board:" << endl;
         drawASCII(playerBoard, cpuGuesses);
         // for debug
@@ -83,12 +89,19 @@ void GameRunner::getPlayerMove() {
             eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/shootv2.mp3");
             std::this_thread::sleep_for(std::chrono::milliseconds(2900));
 
+            //increase shots by one for player
+            playerShots++;
+
             if (cpuBoard->hit(IntPair(x, y))) {
                 eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/explosion.mp3");
                 std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
                 cout << "Hit ship at \"" << x << ", " << y << "\"" << endl;
                 cout << "Go again!" << endl;
+
+                //player hits add one
+                playerHits++;
+
                 // add this location to the vector list of hit locations
                 playerGuesses.emplace_back(IntPair(x, y));
                 // if the player got a hit they get to go again
@@ -96,6 +109,9 @@ void GameRunner::getPlayerMove() {
             } else {
                 eventSoundPlayer.play("/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/Sounds/miss.mp3");
                 std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+
+                //add one to player miss
+                playerMisses++;
 
                 cout << "You missed!" << endl;
                 // add this location to the vector list of hit locations
@@ -110,156 +126,136 @@ void GameRunner::getPlayerMove() {
 }
 
 void GameRunner::getcpuMove() {
-    // randomly generate an IntPair for the CPU move
-    IntPair pair1 = IntPair();
-    pair1.setPair(rand() % boardSize, rand() % boardSize);
+    // Repeat until a valid move is generated
+    while (true) {
+        // randomly generate an IntPair for the CPU move
+        IntPair pair1 = IntPair();
+        pair1.setPair(rand() % boardSize, rand() % boardSize);
 
-    // temp variable keeps track of if the IntPair(x, y) is contained in the vector cpuGuesses
-    bool temp;
-    // search for the value
-    auto it = std::find(cpuGuesses.begin(), cpuGuesses.end(), pair1);
-    // Check if the value was found
-    if (it != cpuGuesses.end()) {
-        temp = true;
-    } else {
-        temp = false;
-    }
-    // if the value was found get a new value
-    if (temp) {
-        getcpuMove();
-    } else {
-        // say where the cpu fired at
-        cout << "CPU fired at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
-        // determine if there was a ship at the input location
-        if (playerBoard->hit(pair1)) {
-            cout << "CPU hit ship at \"" << pair1.getX() << ", " << pair1.getY() << "\"" << endl;
-            cout << "CPU goes again!" << endl;
-            // add this location to the vector list of hit locations
-            cpuGuesses.emplace_back(pair1);
-            // select the direction the computer will attempt to move in
-            int direction = rand() % 4;
-            hitAdjacent(pair1, direction, 0);
-        } else {
-            cout << "CPU missed!" << endl;
-            // add this location to the vector list of hit locations
-            cpuGuesses.emplace_back(pair1);
+        // Check if the generated move is already in cpuGuesses
+        auto it = std::find(cpuGuesses.begin(), cpuGuesses.end(), pair1);
+
+        // If it's not in cpuGuesses, it's a valid move
+        if (it == cpuGuesses.end()) {
+            // Say where the CPU fired at
+            cout << "CPU fired at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
+
+            // CPU fired, so increment the count
+            cpuShots++;
+
+            // Determine if there was a ship at the input location
+            if (playerBoard->hit(pair1)) {
+                cpuHits++;
+                cout << "CPU hit ship at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
+                cout << "CPU goes again!" << endl;
+
+                // Add this location to the vector list of hit locations
+                cpuGuesses.emplace_back(pair1);
+
+                // Select the direction the computer will attempt to move in
+                int direction = rand() % 4;
+                hitAdjacent(pair1, direction, 0);
+            } else {
+                cpuMisses++;
+                cout << "CPU missed!" << endl;
+
+                // Add this location to the vector list of hit locations
+                cpuGuesses.emplace_back(pair1);
+            }
+
+            // Break out of the loop since a valid move has been generated
+            break;
         }
     }
 }
-
 void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
-    // if we have called enough times to try all directions get a new random position
+    // If we have called enough times to try all directions, get a new random position
     timesCalled++;
     if (timesCalled > 4) {
         getcpuMove();
-    } else {
-        // make a move based on direction
-        switch (direction) {
-            case 0:
-                // up
-                // if we are on the board
-                if (playerBoard->onBoard(IntPair(pair.getX(), pair.getY() - 1))) {
-                    IntPair newPair = IntPair(pair.getX(), pair.getY() - 1);
-                    // say where the cpu fired at
-                    cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
-                    // if we hit a boat
-                    if (playerBoard->hit(IntPair(newPair.getX(), newPair.getY()))) {
-                        cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
-                        cout << "CPU goes again!" << endl;
-                        // add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(newPair);
-                        // select the direction the computer will attempt to move in
-                        hitAdjacent(newPair, direction, timesCalled);
-                    } // if we missed the boats
-                    else {
-                        cout << "CPU missed!" << endl;
-                        // add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(newPair);
-                    }
-                } // if we are not on the board
-                else {
-                    direction++;
-                    hitAdjacent(pair, direction, timesCalled);
+        return;
+    }
+
+    switch (direction) {
+        case 0: // Up
+            if (playerBoard->onBoard(IntPair(pair.getX(), pair.getY() - 1))) {
+                IntPair newPair = IntPair(pair.getX(), pair.getY() - 1);
+                cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
+                if (playerBoard->hit(newPair)) {
+                    cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
+                    cout << "CPU goes again!" << endl;
+                    cpuGuesses.emplace_back(newPair);
+                    hitAdjacent(newPair, direction, timesCalled);
+                } else {
+                    cout << "CPU missed!" << endl;
+                    cpuGuesses.emplace_back(newPair);
+                    return; // Stop shooting further in this direction after a miss
                 }
-            case 1:
-                // right
-                // if we are on the board
-                if (playerBoard->onBoard(IntPair(pair.getX() + 1, pair.getY()))) {
-                    IntPair newPair = IntPair(pair.getX() + 1, pair.getY());
-                    // say where the cpu fired at
-                    cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
-                    // if we hit a boat
-                    if (playerBoard->hit(IntPair(newPair.getX(), newPair.getY()))) {
-                        cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
-                        cout << "CPU goes again!" << endl;
-                        // add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(newPair);
-                        // select the direction the computer will attempt to move in
-                        hitAdjacent(newPair, direction, timesCalled);
-                    } // if we missed the boats
-                    else {
-                        cout << "CPU missed!" << endl;
-                        // add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(newPair);
-                    }
-                } // if we are not on the board
-                else {
-                    direction++;
-                    hitAdjacent(pair, direction, timesCalled);
+            } else {
+                direction++;
+                hitAdjacent(pair, direction, timesCalled);
+            }
+            break;
+        case 1: // Right
+            if (playerBoard->onBoard(IntPair(pair.getX() + 1, pair.getY()))) {
+                IntPair newPair = IntPair(pair.getX() + 1, pair.getY());
+                cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
+                if (playerBoard->hit(newPair)) {
+                    cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
+                    cout << "CPU goes again!" << endl;
+                    cpuGuesses.emplace_back(newPair);
+                    hitAdjacent(newPair, direction, timesCalled);
+                } else {
+                    cout << "CPU missed!" << endl;
+                    cpuGuesses.emplace_back(newPair);
+                    return; // Stop shooting further in this direction after a miss
                 }
-            case 2:
-                // down
-                // if we are on the board
-                if (playerBoard->onBoard(IntPair(pair.getX(), pair.getY() + 1))) {
-                    IntPair newPair = IntPair(pair.getX(), pair.getY() + 1);
-                    // say where the cpu fired at
-                    cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
-                    // if we hit a boat
-                    if (playerBoard->hit(IntPair(newPair.getX(), newPair.getY()))) {
-                        cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
-                        cout << "CPU goes again!" << endl;
-                        // add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(newPair);
-                        // select the direction the computer will attempt to move in
-                        hitAdjacent(newPair, direction, timesCalled);
-                    } // if we missed the boats
-                    else {
-                        cout << "CPU missed!" << endl;
-                        // add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(newPair);
-                    }
-                } // if we are not on the board
-                else {
-                    direction++;
-                    hitAdjacent(pair, direction, timesCalled);
+            } else {
+                direction++;
+                hitAdjacent(pair, direction, timesCalled);
+            }
+            break;
+        case 2: // Down
+            if (playerBoard->onBoard(IntPair(pair.getX(), pair.getY() + 1))) {
+                IntPair newPair = IntPair(pair.getX(), pair.getY() + 1);
+                cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
+                if (playerBoard->hit(newPair)) {
+                    cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
+                    cout << "CPU goes again!" << endl;
+                    cpuGuesses.emplace_back(newPair);
+                    hitAdjacent(newPair, direction, timesCalled);
+                } else {
+                    cout << "CPU missed!" << endl;
+                    cpuGuesses.emplace_back(newPair);
+                    return; // Stop shooting further in this direction after a miss
                 }
-            default:
-                // left
-                // if we are on the board
-                if (playerBoard->onBoard(IntPair(pair.getX() - 1, pair.getY()))) {
-                    IntPair newPair = IntPair(pair.getX() - 1, pair.getY());
-                    // say where the cpu fired at
-                    cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
-                    // if we hit a boat
-                    if (playerBoard->hit(IntPair(newPair.getX(), newPair.getY()))) {
-                        cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
-                        cout << "CPU goes again!" << endl;
-                        // add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(newPair);
-                        // select the direction the computer will attempt to move in
-                        hitAdjacent(newPair, direction, timesCalled);
-                    } // if we missed the boats
-                    else {
-                        cout << "CPU missed!" << endl;
-                        // add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(newPair);
-                    }
-                } // if we are not on the board
-                else {
-                    direction = 0;
-                    hitAdjacent(pair, direction, timesCalled);
+            } else {
+                direction++;
+                hitAdjacent(pair, direction, timesCalled);
+            }
+            break;
+        case 3: // Left
+            if (playerBoard->onBoard(IntPair(pair.getX() - 1, pair.getY()))) {
+                IntPair newPair = IntPair(pair.getX() - 1, pair.getY());
+                cout << "CPU fired at (" << newPair.getX() << ", " << newPair.getY() << ")" << endl;
+                if (playerBoard->hit(newPair)) {
+                    cout << "CPU hit ship at \"" << newPair.getX() << ", " << newPair.getY() << "\"" << endl;
+                    cout << "CPU goes again!" << endl;
+                    cpuGuesses.emplace_back(newPair);
+                    hitAdjacent(newPair, direction, timesCalled);
+                } else {
+                    cout << "CPU missed!" << endl;
+                    cpuGuesses.emplace_back(newPair);
+                    return; // Stop shooting further in this direction after a miss
                 }
-        }
+            } else {
+                direction = 0; // Reset direction and try again
+                hitAdjacent(pair, direction, timesCalled);
+            }
+            break;
+        default:
+            direction = 0;
+            hitAdjacent(pair, direction, timesCalled);
     }
 }
 
@@ -413,4 +409,29 @@ IntPair GameRunner::getIntPairInputASCII(bool &isVertical) {
         pair1 = getIntPairInputASCII(isVertical);
     }
     return pair1;
+}
+
+
+int GameRunner::getPlayerShots() const {
+    return playerShots;
+}
+
+int GameRunner::getPlayerHits() const {
+    return playerHits;
+}
+
+int GameRunner::getPlayerMisses() const {
+    return playerMisses;
+}
+
+int GameRunner::getCpuShots() const {
+    return cpuShots;
+}
+
+int GameRunner::getCpuHits() const {
+    return cpuHits;
+}
+
+int GameRunner::getCpuMisses() const {
+    return cpuMisses;
 }

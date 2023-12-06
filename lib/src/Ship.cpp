@@ -3,6 +3,7 @@
 //
 
 #include <utility>
+#include <iostream>
 
 #include "../include/Ship.h"
 
@@ -32,23 +33,15 @@ bool Ship::gotHit(IntPair pos) {
     return false;
 }
 
-bool Ship::hit(IntPair pos) {
-    // check that this position is possible to hit given the current location
-    if (gotHit(pos)) {
-        // increase the number of times hit
-        numTimesHit++;
-
-        // remove this location from the locations that the ship is in to prevent any issues
-        auto it = std::find(locations.begin(), locations.end(), pos);
-        if (it != locations.end()) {
-            locations.erase(it);
-        }
-    }
+void Ship::hit() {
+    numTimesHit++;
 }
 
 bool Ship::isSunk() const {
+
     return (numTimesHit >= shipSize);
 }
+
 
 Ship::Ship(const Ship &other) {
     shipNumber = other.shipNumber;

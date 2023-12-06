@@ -864,4 +864,51 @@ CMakeFiles/Battleship_FinalProject.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__random/student_t_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
   /Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/include/AudioPlayer.h \
-  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/stb/minaudio.h
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/stb/minaudio.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/matplot.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/common.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/detail/config.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/matplotplusplus/source/matplot/matplot/detail/exports.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/complex \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/map \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/__tree \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/concepts.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/handle_types.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/type_traits.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/geodata.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/backend/backend_interface.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/backend/backend_registry.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/backend/gnuplot.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/core/axes_type.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/colors.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/keywords.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/core/axis_type.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/core/legend.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/core/line_spec.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/error_bar.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/line.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/core/axes_object.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/core/figure_type.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/popen.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/function_line.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/histogram.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/bars.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/box_chart.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/circles.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/contours.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/util/contourc.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/list \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/filled_area.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/labels.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/matrix.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/network.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/parallel_lines.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/stair.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/string_function.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/surface.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/axes_objects/vectors.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/freestanding/axes_functions.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/freestanding/axes_lim.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/freestanding/histcounts.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/freestanding/plot.h \
+  /Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/source/matplot/core/figure_registry.h

@@ -172,6 +172,23 @@ Battleship_FinalProject: CMakeFiles/Battleship_FinalProject.dir/lib/src/GameRunn
 Battleship_FinalProject: CMakeFiles/Battleship_FinalProject.dir/lib/src/IntPair.cpp.o
 Battleship_FinalProject: CMakeFiles/Battleship_FinalProject.dir/lib/src/AudioPlayer.cpp.o
 Battleship_FinalProject: CMakeFiles/Battleship_FinalProject.dir/build.make
+Battleship_FinalProject: matplotplusplus/source/matplot/libmatplot.a
+Battleship_FinalProject: /opt/homebrew/lib/libjpeg.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libtiff.dylib
+Battleship_FinalProject: /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/lib/libz.tbd
+Battleship_FinalProject: /opt/homebrew/lib/libpng.dylib
+Battleship_FinalProject: /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/lib/libz.tbd
+Battleship_FinalProject: /opt/homebrew/lib/libpng.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3f.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3l.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3_threads.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3f_threads.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3l_threads.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3_omp.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3f_omp.dylib
+Battleship_FinalProject: /opt/homebrew/lib/libfftw3l_omp.dylib
+Battleship_FinalProject: matplotplusplus/source/3rd_party/libnodesoup.a
 Battleship_FinalProject: CMakeFiles/Battleship_FinalProject.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Battleship_FinalProject"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Battleship_FinalProject.dir/link.txt --verbose=$(VERBOSE)

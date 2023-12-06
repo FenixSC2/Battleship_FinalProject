@@ -4,8 +4,14 @@
 #include <sstream>
 #include <limits>
 #include "lib/include/GameRunner.h"
+#include <matplot/matplot.h>
+
+
 
 int main(int argc, char* argv[]) {
+
+
+
     // info to be read from file
     int boardSize = 0;
     int numShips = 0;
@@ -50,16 +56,37 @@ int main(int argc, char* argv[]) {
     std::cout << "Board size: " << boardSize << std::endl;
     std::cout << "Number of ships: " << numShips << std::endl;
     std::cout << "Ship sizes (ships will be placed in this order L->R): ";
-    for (int size : shipSizes) {
+    for (int size: shipSizes) {
         std::cout << size << " ";
     }
     std::cout << std::endl;
 
-    GameRunner* runner = new GameRunner(boardSize, numShips, shipSizes);
+    GameRunner *runner = new GameRunner(boardSize, numShips, shipSizes);
 
     runner->play();
 
     std::cout << std::endl << "Thanks for playing!" << std::endl;
+
+    int playerShots = runner -> getPlayerShots();
+    int playerHits = runner -> getPlayerHits();
+    int playerMisses = runner -> getPlayerMisses();
+    int cpuShots = runner -> getCpuShots();
+    int cpuHits = runner -> getCpuHits();
+    int cpuMisses = runner -> getCpuMisses();
+
+    // Preparing data for bar charts
+    std::vector<double> playerData = {static_cast<double>(playerShots), static_cast<double>(playerHits), static_cast<double>(playerMisses)};
+    std::vector<double> cpuData = {static_cast<double>(cpuShots), static_cast<double>(cpuHits), static_cast<double>(cpuMisses)};
+
+    // Creating and saving bar chart for Player
+    matplot::bar(playerData);
+    matplot::title("Player Statistics");
+    matplot::save("player_statistics.png");
+
+    // Creating and saving bar chart for CPU
+    matplot::bar(cpuData);
+    matplot::title("CPU Statistics");
+    matplot::save("cpu_statistics.png");
 
     return 0;
 }

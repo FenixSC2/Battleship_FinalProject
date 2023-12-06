@@ -3,6 +3,7 @@
 //
 
 #include "../include/GameBoard.h"
+#include <iostream>
 
 GameBoard::GameBoard() {
 
@@ -217,12 +218,20 @@ void GameBoard::setPos(IntPair pair, Ship *ship) {
 }
 
 bool GameBoard::hit(IntPair pair) {
-    // determine if there is a ship at the location
-    if (getPos(pair) == nullptr) {
-        // no ship -> return false
+    // Determine if there is a ship at the location
+    Ship* ship = getPos(pair);
+    if (ship == nullptr) {
+        // No ship -> return false
         return false;
     }
-    // yes ship -> remove ship, return true;
+
+    // Yes, ship -> remove ship, return true;
     setPos(pair, nullptr);
+
+    // Call the hit function of the Ship object to update numTimesHit
+    ship->hit();
+
     return true;
 }
+
+

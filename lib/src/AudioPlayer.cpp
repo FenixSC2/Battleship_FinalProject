@@ -3,7 +3,7 @@
 //
 
 #define MINIAUDIO_IMPLEMENTATION
-#include "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/stb/minaudio.h"
+#include "../stb/minaudio.h"
 #include "../include/AudioPlayer.h"
 #include <iostream>
 

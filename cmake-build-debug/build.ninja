@@ -79,6 +79,12 @@ build CMakeFiles/Battleship_FinalProject.dir/lib/src/IntPair.cpp.obj: CXX_COMPIL
   OBJECT_DIR = CMakeFiles\Battleship_FinalProject.dir
   OBJECT_FILE_DIR = CMakeFiles\Battleship_FinalProject.dir\lib\src
 
+build CMakeFiles/Battleship_FinalProject.dir/lib/src/AudioPlayer.cpp.obj: CXX_COMPILER__Battleship_FinalProject_unscanned_Debug C$:/Users/natha/OneDrive/Documents/GitHub/Battleship_FinalProject/lib/src/AudioPlayer.cpp || cmake_object_order_depends_target_Battleship_FinalProject
+  DEP_FILE = CMakeFiles\Battleship_FinalProject.dir\lib\src\AudioPlayer.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Battleship_FinalProject.dir
+  OBJECT_FILE_DIR = CMakeFiles\Battleship_FinalProject.dir\lib\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Battleship_FinalProject
@@ -87,7 +93,7 @@ build CMakeFiles/Battleship_FinalProject.dir/lib/src/IntPair.cpp.obj: CXX_COMPIL
 #############################################
 # Link the executable Battleship_FinalProject.exe
 
-build Battleship_FinalProject.exe: CXX_EXECUTABLE_LINKER__Battleship_FinalProject_Debug CMakeFiles/Battleship_FinalProject.dir/main.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/GameBoard.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/Ship.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/GameRunner.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/IntPair.cpp.obj
+build Battleship_FinalProject.exe: CXX_EXECUTABLE_LINKER__Battleship_FinalProject_Debug CMakeFiles/Battleship_FinalProject.dir/main.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/GameBoard.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/Ship.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/GameRunner.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/IntPair.cpp.obj CMakeFiles/Battleship_FinalProject.dir/lib/src/AudioPlayer.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Battleship_FinalProject.dir

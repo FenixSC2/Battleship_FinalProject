@@ -8,6 +8,7 @@
 #include "GameBoard.h"
 #include "iostream"
 #include "AudioPlayer.h"
+# include <thread>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ private:
     // boards for the player and cpu
     GameBoard* playerBoard;
     GameBoard* cpuBoard;
+    GameBoard* blankBoard;
 
     // audio players
     AudioPlayer backgroundMusicPlayer;
@@ -61,6 +63,13 @@ private:
     // keeps track of which spaces have been guessed so far by the cpu and player respectively
     vector<IntPair> cpuGuesses;
     vector<IntPair> playerGuesses;
+
+    // for audio paths
+    const string backgroundPath = "../lib/Sounds/background.mp3";
+    const string shootNoisePath = "../lib/Sounds/shootv2.mp3";
+    const string explosionPath = "../lib/Sounds/explosion.mp3";
+    const string missPath = "../lib/Sounds/miss.mp3";
+    const string splashPath = "../lib/Sounds/spash.wav";
 
 public:
     // constructors

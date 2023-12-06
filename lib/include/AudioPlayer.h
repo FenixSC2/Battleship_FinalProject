@@ -7,7 +7,7 @@
 
 
 #include <string>
-#include "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/lib/stb/minaudio.h"
+#include "../stb/minaudio.h"
 
 
 class AudioPlayer {

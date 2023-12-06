@@ -363,7 +363,7 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                         direction = 0;
                         hitAdjacent(pair, direction, timesCalled);
                     }
-                    return;
+                    break;
                 }
 
                 switch (direction) {
@@ -383,8 +383,10 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                                 return; // Stop shooting further in this direction after a miss
                             }
                         } else {
-                            direction++;
-                            hitAdjacent(pair, direction, timesCalled);
+                            if (timesCalled < 2) {
+                                direction++;
+                                hitAdjacent(pair, direction, timesCalled);
+                            }
                         }
                         break;
                     case 1: // Right
@@ -403,8 +405,10 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                                 return; // Stop shooting further in this direction after a miss
                             }
                         } else {
-                            direction++;
-                            hitAdjacent(pair, direction, timesCalled);
+                            if (timesCalled < 2) {
+                                direction++;
+                                hitAdjacent(pair, direction, timesCalled);
+                            }
                         }
                         break;
                     case 2: // Down
@@ -423,8 +427,10 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                                 return; // Stop shooting further in this direction after a miss
                             }
                         } else {
-                            direction++;
-                            hitAdjacent(pair, direction, timesCalled);
+                            if (timesCalled < 2) {
+                                direction++;
+                                hitAdjacent(pair, direction, timesCalled);
+                            }
                         }
                         break;
                     case 3: // Left
@@ -443,13 +449,17 @@ void GameRunner::hitAdjacent(IntPair pair, int direction, int timesCalled) {
                                 return; // Stop shooting further in this direction after a miss
                             }
                         } else {
-                            direction = 0; // Reset direction and try again
-                            hitAdjacent(pair, direction, timesCalled);
+                            if (timesCalled < 2) {
+                                direction++;
+                                hitAdjacent(pair, direction, timesCalled);
+                            }
                         }
                         break;
                     default:
-                        direction = 0;
-                        hitAdjacent(pair, direction, timesCalled);
+                        if (timesCalled < 2) {
+                            direction = 0;
+                            hitAdjacent(pair, direction, timesCalled);
+                        }
                 }
         }
     }

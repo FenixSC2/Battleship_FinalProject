@@ -411,3 +411,308 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindBLAS.cmake:367 (check_function_exists)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindBLAS.cmake:411 (check_blas_libraries)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindLAPACK.cmake:247 (find_package)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindLAPACK.cmake:283 (_lapack_find_dependency)"
+      - "matplotplusplus/source/3rd_party/CMakeLists.txt:96 (find_package)"
+    checks:
+      - "Looking for sgemm_"
+    directories:
+      source: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-slY1hc"
+      binary: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-slY1hc"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "13.5"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "BLAS_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-slY1hc
+        
+        Run Build Command(s):/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0dd4a/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_0dd4a.dir/build.make CMakeFiles/cmTC_0dd4a.dir/build
+        Building C object CMakeFiles/cmTC_0dd4a.dir/CheckFunctionExists.c.o
+        /Library/Developer/CommandLineTools/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_ -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -MD -MT CMakeFiles/cmTC_0dd4a.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_0dd4a.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_0dd4a.dir/CheckFunctionExists.c.o -c /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-slY1hc/CheckFunctionExists.c
+        Linking C executable cmTC_0dd4a
+        /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0dd4a.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgemm_ -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_0dd4a.dir/CheckFunctionExists.c.o -o cmTC_0dd4a 
+        ld: Undefined symbols:
+          _sgemm_, referenced from:
+              _main in CheckFunctionExists.c.o
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)
+        make[2]: *** [cmTC_0dd4a] Error 1
+        make[1]: *** [cmTC_0dd4a/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckCSourceCompiles.cmake:76 (cmake_check_source_compiles)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindBLAS.cmake:463 (find_package)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindLAPACK.cmake:247 (find_package)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindLAPACK.cmake:283 (_lapack_find_dependency)"
+      - "matplotplusplus/source/3rd_party/CMakeLists.txt:96 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9oF3Da"
+      binary: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9oF3Da"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "13.5"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9oF3Da
+        
+        Run Build Command(s):/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_9e61c/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_9e61c.dir/build.make CMakeFiles/cmTC_9e61c.dir/build
+        Building C object CMakeFiles/cmTC_9e61c.dir/src.c.o
+        /Library/Developer/CommandLineTools/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -MD -MT CMakeFiles/cmTC_9e61c.dir/src.c.o -MF CMakeFiles/cmTC_9e61c.dir/src.c.o.d -o CMakeFiles/cmTC_9e61c.dir/src.c.o -c /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-9oF3Da/src.c
+        Linking C executable cmTC_9e61c
+        /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9e61c.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/cc  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_9e61c.dir/src.c.o -o cmTC_9e61c 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindBLAS.cmake:367 (check_function_exists)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindBLAS.cmake:1170 (check_blas_libraries)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindLAPACK.cmake:247 (find_package)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindLAPACK.cmake:283 (_lapack_find_dependency)"
+      - "matplotplusplus/source/3rd_party/CMakeLists.txt:96 (find_package)"
+    checks:
+      - "Looking for dgemm_"
+    directories:
+      source: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-wiQbj7"
+      binary: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-wiQbj7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "13.5"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "BLAS_Accelerate_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-wiQbj7
+        
+        Run Build Command(s):/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0f31c/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_0f31c.dir/build.make CMakeFiles/cmTC_0f31c.dir/build
+        Building C object CMakeFiles/cmTC_0f31c.dir/CheckFunctionExists.c.o
+        /Library/Developer/CommandLineTools/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=dgemm_ -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -MD -MT CMakeFiles/cmTC_0f31c.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_0f31c.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_0f31c.dir/CheckFunctionExists.c.o -c /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-wiQbj7/CheckFunctionExists.c
+        Linking C executable cmTC_0f31c
+        /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f31c.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=dgemm_ -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_0f31c.dir/CheckFunctionExists.c.o -o cmTC_0f31c  -Xlinker -framework -Xlinker Accelerate 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckFunctionExists.cmake:91 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindLAPACK.cmake:220 (check_function_exists)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindLAPACK.cmake:395 (check_lapack_libraries)"
+      - "matplotplusplus/source/3rd_party/CMakeLists.txt:96 (find_package)"
+    checks:
+      - "Looking for cheev_"
+    directories:
+      source: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-S2Ckue"
+      binary: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-S2Ckue"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "13.5"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "LAPACK_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-S2Ckue
+        
+        Run Build Command(s):/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_5832d/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_5832d.dir/build.make CMakeFiles/cmTC_5832d.dir/build
+        Building C object CMakeFiles/cmTC_5832d.dir/CheckFunctionExists.c.o
+        /Library/Developer/CommandLineTools/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=cheev_ -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -MD -MT CMakeFiles/cmTC_5832d.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_5832d.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_5832d.dir/CheckFunctionExists.c.o -c /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-S2Ckue/CheckFunctionExists.c
+        Linking C executable cmTC_5832d
+        /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5832d.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=cheev_ -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_5832d.dir/CheckFunctionExists.c.o -o cmTC_5832d  -Xlinker -framework -Xlinker Accelerate -lm -ldl 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckCXXCompilerFlag.cmake:40 (cmake_check_compiler_flag)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GenerateExportHeader.cmake:238 (check_cxx_compiler_flag)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GenerateExportHeader.cmake:419 (_test_compiler_hidden_visibility)"
+      - "matplotplusplus/source/matplot/CMakeLists.txt:105 (generate_export_header)"
+    checks:
+      - "Performing Test COMPILER_HAS_HIDDEN_VISIBILITY"
+    directories:
+      source: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ftCZnI"
+      binary: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ftCZnI"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "13.5"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "COMPILER_HAS_HIDDEN_VISIBILITY"
+      cached: true
+      stdout: |
+        Change Dir: /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ftCZnI
+        
+        Run Build Command(s):/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_b6dd9/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_b6dd9.dir/build.make CMakeFiles/cmTC_b6dd9.dir/build
+        Building CXX object CMakeFiles/cmTC_b6dd9.dir/src.cxx.o
+        /Library/Developer/CommandLineTools/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_VISIBILITY  -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5   -fvisibility=hidden -MD -MT CMakeFiles/cmTC_b6dd9.dir/src.cxx.o -MF CMakeFiles/cmTC_b6dd9.dir/src.cxx.o.d -o CMakeFiles/cmTC_b6dd9.dir/src.cxx.o -c /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ftCZnI/src.cxx
+        Linking CXX executable cmTC_b6dd9
+        /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6dd9.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_b6dd9.dir/src.cxx.o -o cmTC_b6dd9 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckCXXCompilerFlag.cmake:40 (cmake_check_compiler_flag)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GenerateExportHeader.cmake:239 (check_cxx_compiler_flag)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GenerateExportHeader.cmake:419 (_test_compiler_hidden_visibility)"
+      - "matplotplusplus/source/matplot/CMakeLists.txt:105 (generate_export_header)"
+    checks:
+      - "Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY"
+    directories:
+      source: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-fSEeuR"
+      binary: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-fSEeuR"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "13.5"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "COMPILER_HAS_HIDDEN_INLINE_VISIBILITY"
+      cached: true
+      stdout: |
+        Change Dir: /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-fSEeuR
+        
+        Run Build Command(s):/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_84157/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_84157.dir/build.make CMakeFiles/cmTC_84157.dir/build
+        Building CXX object CMakeFiles/cmTC_84157.dir/src.cxx.o
+        /Library/Developer/CommandLineTools/usr/bin/c++ -DCOMPILER_HAS_HIDDEN_INLINE_VISIBILITY  -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5   -fvisibility-inlines-hidden -MD -MT CMakeFiles/cmTC_84157.dir/src.cxx.o -MF CMakeFiles/cmTC_84157.dir/src.cxx.o.d -o CMakeFiles/cmTC_84157.dir/src.cxx.o -c /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-fSEeuR/src.cxx
+        Linking CXX executable cmTC_84157
+        /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84157.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_84157.dir/src.cxx.o -o cmTC_84157 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckCXXSourceCompiles.cmake:76 (cmake_check_source_compiles)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GenerateExportHeader.cmake:206 (check_cxx_source_compiles)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GenerateExportHeader.cmake:263 (_check_cxx_compiler_attribute)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GenerateExportHeader.cmake:420 (_test_compiler_has_deprecated)"
+      - "matplotplusplus/source/matplot/CMakeLists.txt:105 (generate_export_header)"
+    checks:
+      - "Performing Test COMPILER_HAS_DEPRECATED_ATTR"
+    directories:
+      source: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-aDfVnF"
+      binary: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-aDfVnF"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "13.5"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "COMPILER_HAS_DEPRECATED_ATTR"
+      cached: true
+      stdout: |
+        Change Dir: /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-aDfVnF
+        
+        Run Build Command(s):/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0776b/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_0776b.dir/build.make CMakeFiles/cmTC_0776b.dir/build
+        Building CXX object CMakeFiles/cmTC_0776b.dir/src.cxx.o
+        /Library/Developer/CommandLineTools/usr/bin/c++ -DCOMPILER_HAS_DEPRECATED_ATTR  -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -MD -MT CMakeFiles/cmTC_0776b.dir/src.cxx.o -MF CMakeFiles/cmTC_0776b.dir/src.cxx.o.d -o CMakeFiles/cmTC_0776b.dir/src.cxx.o -c /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-aDfVnF/src.cxx
+        /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-aDfVnF/src.cxx:2:25: warning: 'somefunc' is deprecated [-Wdeprecated-declarations]
+            int main() { return somefunc();}
+                                ^
+        /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-aDfVnF/src.cxx:1:16: note: 'somefunc' has been explicitly marked deprecated here
+        __attribute__((__deprecated__)) int somefunc() { return 0; }
+                       ^
+        1 warning generated.
+        Linking CXX executable cmTC_0776b
+        /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0776b.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_0776b.dir/src.cxx.o -o cmTC_0776b 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckSymbolExists.cmake:145 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CheckSymbolExists.cmake:71 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "matplotplusplus/source/matplot/CMakeLists.txt:141 (check_symbol_exists)"
+    checks:
+      - "Looking for __fbufsize"
+    directories:
+      source: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-qo12ge"
+      binary: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-qo12ge"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/alexchen/Documents/GitHub/Battleship_FinalProject/matplotplusplus/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: "13.5"
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "HAVE_FBUFSIZE"
+      cached: true
+      stdout: |
+        Change Dir: /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-qo12ge
+        
+        Run Build Command(s):/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_65a57/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_65a57.dir/build.make CMakeFiles/cmTC_65a57.dir/build
+        Building C object CMakeFiles/cmTC_65a57.dir/CheckSymbolExists.c.o
+        /Library/Developer/CommandLineTools/usr/bin/cc   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -mmacosx-version-min=13.5 -MD -MT CMakeFiles/cmTC_65a57.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_65a57.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_65a57.dir/CheckSymbolExists.c.o -c /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-qo12ge/CheckSymbolExists.c
+        /Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-qo12ge/CheckSymbolExists.c:2:10: fatal error: 'stdio_ext.h' file not found
+        #include <stdio_ext.h>
+                 ^~~~~~~~~~~~~
+        1 error generated.
+        make[2]: *** [CMakeFiles/cmTC_65a57.dir/CheckSymbolExists.c.o] Error 1
+        make[1]: *** [cmTC_65a57/fast] Error 2
+        
+      exitCode: 2
+...

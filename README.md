@@ -1,4 +1,4 @@
-# Battleship Game Final Project
+# Battleship Final Project
  
 _This battleship game is run based on conditions input via reading the_ "BattleData" _file._
 

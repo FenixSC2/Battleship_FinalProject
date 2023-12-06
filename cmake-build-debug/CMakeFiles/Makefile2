@@ -143,8 +143,8 @@ matplotplusplus/source/matplot/clean: matplotplusplus/source/matplot/CMakeFiles/
 # Target rules for target CMakeFiles/Battleship_FinalProject.dir
 
 # All Build rule for target.
-CMakeFiles/Battleship_FinalProject.dir/all: matplotplusplus/source/3rd_party/CMakeFiles/nodesoup.dir/all
 CMakeFiles/Battleship_FinalProject.dir/all: matplotplusplus/source/matplot/CMakeFiles/matplot.dir/all
+CMakeFiles/Battleship_FinalProject.dir/all: matplotplusplus/source/3rd_party/CMakeFiles/nodesoup.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Battleship_FinalProject.dir/build.make CMakeFiles/Battleship_FinalProject.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Battleship_FinalProject.dir/build.make CMakeFiles/Battleship_FinalProject.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/alexchen/Documents/GitHub/Battleship_FinalProject/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target Battleship_FinalProject"

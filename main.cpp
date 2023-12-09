@@ -9,9 +9,6 @@
 
 
 int main(int argc, char* argv[]) {
-
-
-
     // info to be read from file
     int boardSize = 0;
     int numShips = 0;

@@ -74,17 +74,23 @@ int main(int argc, char* argv[]) {
     int cpuHits = runner -> getCpuHits();
     int cpuMisses = runner -> getCpuMisses();
 
-    // Preparing data for bar charts
+    // Labels for the x-axis
+    std::vector<std::string> labels = {"Shots", "Hits", "Misses"};
+
+    // preparing data for bar charts
     std::vector<double> playerData = {static_cast<double>(playerShots), static_cast<double>(playerHits), static_cast<double>(playerMisses)};
     std::vector<double> cpuData = {static_cast<double>(cpuShots), static_cast<double>(cpuHits), static_cast<double>(cpuMisses)};
 
+
     // Creating and saving bar chart for Player
-    matplot::bar(playerData);
+    auto playerBar = matplot::bar(playerData);
+    matplot::xticklabels(labels);
     matplot::title("Player Statistics");
     matplot::save("player_statistics.png");
 
     // Creating and saving bar chart for CPU
-    matplot::bar(cpuData);
+    auto cpuBar = matplot::bar(cpuData);
+    matplot::xticklabels(labels);
     matplot::title("CPU Statistics");
     matplot::save("cpu_statistics.png");
 

@@ -181,40 +181,6 @@ void GameRunner::getcpuMove() {
                 std::this_thread::sleep_for(std::chrono::milliseconds(3000));
                 // add this location to the vector list of hit locations
                 cpuGuesses.emplace_back(pair1);
-                // Check if the generated move is already in cpuGuesses
-                auto it = std::find(cpuGuesses.begin(), cpuGuesses.end(), pair1);
-
-                // If it's not in cpuGuesses, it's a valid move
-                if (it == cpuGuesses.end()) {
-                    // Say where the CPU fired at
-                    cout << "CPU fired at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
-
-                    // CPU fired, so increment the count
-                    cpuShots++;
-
-                    // Determine if there was a ship at the input location
-                    if (playerBoard->hit(pair1)) {
-                        cpuHits++;
-                        cout << "CPU hit ship at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
-                        cout << "CPU goes again!" << endl;
-
-                        // Add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(pair1);
-
-                        // Select the direction the computer will attempt to move in
-                        int direction = rand() % 4;
-                        hitAdjacent(pair1, direction, 0);
-                    } else {
-                        cpuMisses++;
-                        cout << "CPU missed!" << endl;
-
-                        // Add this location to the vector list of hit locations
-                        cpuGuesses.emplace_back(pair1);
-                    }
-
-                    // Break out of the loop since a valid move has been generated
-                    break;
-                }
             }
         }
     }

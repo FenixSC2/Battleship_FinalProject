@@ -59,10 +59,8 @@ void GameRunner::play() {
     backgroundMusicPlayer.play(backgroundPath);
 
     while(!isGameOver()) {
-        isGameOver();
         getPlayerMove();
         getcpuMove();
-        isGameOver();
         cout << "Your shots (CPU board): " << endl;
         drawASCII(blankBoard, playerGuesses);
         cout << "Your current board:" << endl;
@@ -140,48 +138,45 @@ void GameRunner::getPlayerMove() {
 }
 
 void GameRunner::getcpuMove() {
-    // Repeat until a valid move is generated
-    while (true) {
-        // randomly generate an IntPair for the CPU move
-        IntPair pair1 = IntPair();
-        pair1.setPair(rand() % boardSize, rand() % boardSize);
+    // randomly generate an IntPair for the CPU move
+    IntPair pair1 = IntPair();
+    pair1.setPair(rand() % boardSize, rand() % boardSize);
 
-        // temp variable keeps track of if the IntPair(x, y) is contained in the vector cpuGuesses
-        bool temp;
-        // search for the value
-        auto it = std::find(cpuGuesses.begin(), cpuGuesses.end(), pair1);
-        // Check if the value was found
-        if (it != cpuGuesses.end()) {
-            temp = true;
+    // temp variable keeps track of if the IntPair(x, y) is contained in the vector cpuGuesses
+    bool temp;
+    // search for the value
+    auto it = std::find(cpuGuesses.begin(), cpuGuesses.end(), pair1);
+    // Check if the value was found
+    if (it != cpuGuesses.end()) {
+        temp = true;
+    } else {
+        temp = false;
+    }
+    // if the value was found get a new value
+    if (temp) {
+        getcpuMove();
+    } else {
+        // say where the cpu fired at
+        cout << "CPU fired at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
+        eventSoundPlayer.play(shootNoisePath);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2500));
+        // determine if there was a ship at the input location
+        if (playerBoard->hit(pair1)) {
+            cout << "CPU hit ship at \"" << pair1.getX() << ", " << pair1.getY() << "\"" << endl;
+            cout << "CPU goes again!" << endl;
+            eventSoundPlayer.play(explosionPath);
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+            // add this location to the vector list of hit locations
+            cpuGuesses.emplace_back(pair1);
+            // select the direction the computer will attempt to move in
+            int direction = rand() % 4;
+            hitAdjacent(pair1, direction, 0);
         } else {
-            temp = false;
-        }
-        // if the value was found get a new value
-        if (temp) {
-            getcpuMove();
-        } else {
-            // say where the cpu fired at
-            cout << "CPU fired at (" << pair1.getX() << ", " << pair1.getY() << ")" << endl;
-            eventSoundPlayer.play(shootNoisePath);
-            std::this_thread::sleep_for(std::chrono::milliseconds(2500));
-            // determine if there was a ship at the input location
-            if (playerBoard->hit(pair1)) {
-                cout << "CPU hit ship at \"" << pair1.getX() << ", " << pair1.getY() << "\"" << endl;
-                cout << "CPU goes again!" << endl;
-                eventSoundPlayer.play(explosionPath);
-                std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-                // add this location to the vector list of hit locations
-                cpuGuesses.emplace_back(pair1);
-                // select the direction the computer will attempt to move in
-                int direction = rand() % 4;
-                hitAdjacent(pair1, direction, 0);
-            } else {
-                cout << "CPU missed!" << endl;
-                eventSoundPlayer.play(missPath);
-                std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-                // add this location to the vector list of hit locations
-                cpuGuesses.emplace_back(pair1);
-            }
+            cout << "CPU missed!" << endl;
+            eventSoundPlayer.play(missPath);
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+            // add this location to the vector list of hit locations
+            cpuGuesses.emplace_back(pair1);
         }
     }
 }

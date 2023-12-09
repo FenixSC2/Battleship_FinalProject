@@ -22,6 +22,14 @@ _This continues until the game ends when either the player or the CPU sinks all 
 _The board is displayed to the user via ASCII on the command line._
 - _Empty squares are displayed as "| |"_.
 - _Squares containing ships are displayed as_ "|1|", "|2|", "|3|", _etc._
+  - _Each unique number indicates a unique ship, for example the horizontal ship number 1 (with size 2) would appear on the baord as:_
+
+[ ][ ][ ][ ]
+
+[ ][1][1][ ]
+
+[ ][ ][ ][ ]
+
 - _Squares that have been hit are displayed as_ "|X|".
    - _The CPU's hits are displayed on the player board._
    - _The Player's hits are displayed on an empty board._
